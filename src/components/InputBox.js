@@ -1,17 +1,44 @@
 import React, { Component } from 'react'
 
 export class InputBox extends Component {
-    render() {
 
-        let submitValue = document.getElementsByClassName("inputBox.value")
+    constructor(props) {
+        super(props)
+        this.state = {
+            entry: "",
+            id: 0
+        }
+
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(event) {
+        this.setState({
+                [event.target.name]: event.target.value,
+                id: this.props.todos.length
+            }
+        )
+    }
+
+    handleSubmit(event) {
+        this.props.newEntry(this.state.entry, this.state.id)
+        event.preventDefault()
+    }
+
+
+    render() {
 
         return (
             <div className = "inputBox">
-                <form method = "get">
+                <form onSubmit = {this.handleSubmit}>
                     <input 
                     type = "text" 
-                    id = "entry"
+                    name = "entry"
+                    value = {this.state.entry}
                     placeholder = "add a new entry.."
+                    onChange = {this.handleChange}
+                    autoFocus = {true}
                     />
                 </form>
             </div>

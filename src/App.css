@@ -37,10 +37,15 @@ input[type=checkbox]{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  text-transform: capitalize;
 }
 
 .todoList {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.inputBox {
+  margin: 10px;
 }

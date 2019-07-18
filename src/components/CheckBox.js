@@ -10,8 +10,8 @@ class CheckBox extends Component {
                     checked = {this.props.item.completed}
                     onChange = {() => this.props.handleChange(this.props.item.id)}/>
                 <label 
-                    for = {this.props.item.id}
-                    style = {{ textDecorationLine: this.props.item.completed ? "line-through" : "" }}
+                    htmlFor = {this.props.item.id}
+                    style = {{ textDecorationLine: this.props.item.completed ? "line-through" : null }}
                 >
 
                     {this.props.item.entry}

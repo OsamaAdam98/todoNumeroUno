@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
 import CheckBox from "./CheckBox"
 import todosData from "./todosData"
-// #todo
-//import InputBox from './InputBox';
+import InputBox from './InputBox';
 
 class Main extends Component {
 
     constructor() {
         super()
         this.handleChange = this.handleChange.bind(this)
-        //#todo
-        //this.newEntry = this.newEntry.bind(this)
+        this.newEntry = this.newEntry.bind(this)
         this.state = {
             todos: todosData
         }
@@ -30,36 +28,37 @@ class Main extends Component {
             }
         )
     }
-    // #todo: add an inputbox event handler
-    /*
-    newEntry(textEntry) {
-        console.log("Key hit")
+
+    newEntry(textEntry, itemId) {
         this.setState(
             (prevState) => {
-                prevState.todos.push(
+                const updatedState = prevState.todos.concat(
                     {
-                        id: 3,
+                        id: itemId,
                         entry: textEntry,
                         completed: false
                     }
                 )
-                return prevState
+                return {todos: updatedState}
             }
         )
     }
-    */
+    
     render(){
         const checkBoxComponent = this.state.todos.map(item => 
             <CheckBox 
-            key = {item.id} 
-            item = {item}
-            handleChange = {this.handleChange}/>)
+                key = {item.id} 
+                item = {item}
+                handleChange = {this.handleChange}
+            />)
 
         return (
             <div className = "todoList">
                 {checkBoxComponent}
-                {/* #todo add inputBox */}
-                {/*<InputBox newEntry = {this.newEntry}/>*/}
+                <InputBox 
+                    newEntry = {this.newEntry}
+                    todos = {this.state.todos}
+                />
             </div>
         )
     }
