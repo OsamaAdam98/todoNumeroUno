@@ -6,17 +6,19 @@ class CheckBox extends Component {
             <div className = "todoItem">
                 <input 
                     type = "checkbox" 
-                    value = "toggler"
+                    id = {this.props.item.id}
                     checked = {this.props.item.completed}
                     onChange = {() => this.props.handleChange(this.props.item.id)}/>
                 <label 
-                    for = "toggler"
-                    style = {{ textDecorationLine: this.props.item.completed ? "line-through" : "" }}>
+                    for = {this.props.item.id}
+                    style = {{ textDecorationLine: this.props.item.completed ? "line-through" : "" }}
+                >
 
                     {this.props.item.entry}
                     
                 </label>
-            </div>)}
+            </div>)
+    }
 }
 
 export default CheckBox
