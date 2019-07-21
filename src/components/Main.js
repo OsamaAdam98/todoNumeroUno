@@ -53,12 +53,12 @@ class Main extends Component {
             />)
 
         return (
-            <div className = "todoList">
-                {checkBoxComponent}
+            <div className = "container-fluid">
                 <InputBox 
                     newEntry = {this.newEntry}
                     todos = {this.state.todos}
                 />
+                {checkBoxComponent}
             </div>
         )
     }

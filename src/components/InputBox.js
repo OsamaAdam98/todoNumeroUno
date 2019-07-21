@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class InputBox extends Component {
+class InputBox extends Component {
 
     constructor(props) {
         super(props)
@@ -14,8 +14,9 @@ export class InputBox extends Component {
     }
 
     handleChange(event) {
+        const {name, value} = event.target
         this.setState({
-                [event.target.name]: event.target.value,
+                [name]: value,
                 id: this.props.todos.length
             }
         )
@@ -30,9 +31,10 @@ export class InputBox extends Component {
     render() {
 
         return (
-            <div className = "inputBox">
+            <div>
                 <form onSubmit = {this.handleSubmit}>
                     <input 
+                    className = "form-control"
                     type = "text" 
                     name = "entry"
                     value = {this.state.entry}
