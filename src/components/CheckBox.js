@@ -11,7 +11,9 @@ class CheckBox extends Component {
         return (
             <div>
                 <ul className = "list-group">
-                    <li className = "list-group-item">
+                    <li className = "list-group-item list-group-item-action"
+                        onClick={() => this.props.handleChange(this.props.item.id)}
+                    >
                         <label 
                             htmlFor = {this.props.item.id}
                             style = {entryStyle}
