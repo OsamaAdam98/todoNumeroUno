@@ -34,13 +34,13 @@ class InputBox extends Component {
             <div>
                 <form onSubmit = {this.handleSubmit}>
                     <input 
-                    className = "form-control"
-                    type = "text" 
-                    name = "entry"
-                    value = {this.state.entry}
-                    placeholder = "add a new entry.."
-                    onChange = {this.handleChange}
-                    autoFocus = {true}
+                        className = "form-control inputBox"
+                        type = "text" 
+                        name = "entry"
+                        value = {this.state.entry}
+                        placeholder = "add a new entry.."
+                        onChange = {this.handleChange}
+                        autoFocus = {true}
                     />
                 </form>
             </div>

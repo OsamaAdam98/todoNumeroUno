@@ -1,0 +1,9 @@
+.chBoxLabel {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.chBox {
+    display: none;
+}

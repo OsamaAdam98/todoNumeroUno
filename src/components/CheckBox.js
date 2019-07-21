@@ -5,19 +5,20 @@ class CheckBox extends Component {
     
     render(){
         const entryStyle = {
-            textDecorationLine: this.props.item.completed ? "line-through" : null
+            textDecorationLine: this.props.item.completed ? "line-through" : null,
+            color: this.props.item.completed ? "grey" : null            
         }
         return (
-            <div className = "container-fluid">
-                <div className = "row justify-content-center"> 
-                    <div className= "col-4 form-check">
+            <div>
+                <ul className = "list-group">
+                    <li className = "list-group-item">
                         <label 
                             htmlFor = {this.props.item.id}
                             style = {entryStyle}
-                            className = "form-check-label"
+                            className = "chBoxLabel"
                         >
                             <input 
-                                className = "form-check-input"
+                                className = "chBox"
                                 type = "checkbox" 
                                 id = {this.props.item.id}
                                 checked = {this.props.item.completed}
@@ -27,8 +28,8 @@ class CheckBox extends Component {
                             {this.props.item.entry}
                             
                         </label>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         )
     }
