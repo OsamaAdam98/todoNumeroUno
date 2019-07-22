@@ -5,7 +5,7 @@ class InputBox extends Component {
 		super(props);
 		this.state = {
 			entry: "",
-			id: 0
+			id: this.props.todos.length
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -15,12 +15,14 @@ class InputBox extends Component {
 	handleChange(event) {
 		const {name, value} = event.target;
 		this.setState({
-			[name]: value,
-			id: this.props.todos.length
+			[name]: value
 		});
 	}
 
 	handleSubmit(event) {
+		this.setState({
+			id: this.state.id + 1
+		});
 		this.props.newEntry(this.state.entry, this.state.id);
 		event.preventDefault();
 	}

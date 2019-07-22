@@ -1,12 +1,12 @@
 .chBoxLabel {
-    width: 100%;
-    cursor: pointer;
-    text-align: center;
+	width: 100%;
+	cursor: pointer;
+	text-align: center;
 }
 
 .chBox {
-    display: none;
+	display: none;
 }
 .chBoxList {
-    cursor: pointer;
+	cursor: pointer;
 }
