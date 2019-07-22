@@ -12,21 +12,6 @@ class InputBox extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
-		const {name, value} = event.target;
-		this.setState({
-			[name]: value
-		});
-	}
-
-	handleSubmit(event) {
-		this.setState({
-			id: this.state.id + 1
-		});
-		this.props.newEntry(this.state.entry, this.state.id);
-		event.preventDefault();
-	}
-
 	render() {
 		return (
 			<div>
@@ -43,6 +28,21 @@ class InputBox extends Component {
 				</form>
 			</div>
 		);
+	}
+
+	handleChange(event) {
+		const {name, value} = event.target;
+		this.setState({
+			[name]: value
+		});
+	}
+
+	handleSubmit(event) {
+		this.setState({
+			id: this.state.id + 1
+		});
+		this.props.newEntry(this.state.entry, this.state.id);
+		event.preventDefault();
 	}
 }
 

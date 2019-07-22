@@ -13,6 +13,19 @@ class Main extends Component {
 		};
 	}
 
+	render() {
+		const checkBoxComponent = this.state.todos.map(item => (
+			<CheckBox key={item.id} item={item} handleChange={this.handleChange} />
+		));
+
+		return (
+			<div className="container-fluid">
+				<InputBox newEntry={this.newEntry} todos={this.state.todos} />
+				{checkBoxComponent}
+			</div>
+		);
+	}
+
 	handleChange(id) {
 		this.setState(prevState => {
 			const updatedState = prevState.todos.map(todo => {
@@ -32,19 +45,6 @@ class Main extends Component {
 			});
 			return {todos: updatedState};
 		});
-	}
-
-	render() {
-		const checkBoxComponent = this.state.todos.map(item => (
-			<CheckBox key={item.id} item={item} handleChange={this.handleChange} />
-		));
-
-		return (
-			<div className="container-fluid">
-				<InputBox newEntry={this.newEntry} todos={this.state.todos} />
-				{checkBoxComponent}
-			</div>
-		);
 	}
 }
 
