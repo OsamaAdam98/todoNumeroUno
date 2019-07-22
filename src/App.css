@@ -7,6 +7,6 @@
 .chBox {
     display: none;
 }
-li {
+.chBoxList {
     cursor: pointer;
 }
