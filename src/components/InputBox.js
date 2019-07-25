@@ -20,10 +20,10 @@ class InputBox extends Component {
 						className="form-control inputBox"
 						type="text"
 						name="entry"
-						value={this.state.entry}
 						placeholder="add a new entry.."
 						onChange={this.handleChange}
 						autoFocus={true}
+						autoComplete={false}
 					/>
 				</form>
 			</div>
