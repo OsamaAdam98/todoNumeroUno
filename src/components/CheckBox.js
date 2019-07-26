@@ -25,7 +25,7 @@ function CheckBox(props) {
 							onChange={() => props.handleChange(props.item.id)}
 						/>
 
-						{props.item.entry}
+						{props.item.title}
 					</label>
 				</li>
 			</ul>

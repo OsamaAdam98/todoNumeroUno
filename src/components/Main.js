@@ -1,10 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import CheckBox from "./CheckBox";
-import todosData from "./todosData";
 import InputBox from "./InputBox";
 
 function Main() {
-	const [todos, setTodos] = useState(todosData);
+	const [todos, setTodos] = useState([]);
+
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/todos")
+			.then((response) => response.json())
+			.then((json) => setTodos(json));
+	}, []);
 
 	const handleChange = (id) => {
 		setTodos(
@@ -19,7 +24,7 @@ function Main() {
 		setTodos(
 			todos.concat({
 				id: itemID,
-				entry: textEntry,
+				title: textEntry,
 				completed: false
 			})
 		);
