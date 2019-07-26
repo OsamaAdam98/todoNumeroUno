@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from "react";
 import CheckBox from "./CheckBox";
 import InputBox from "./InputBox";
+import axios from "axios";
 
 function Main() {
 	const [todos, setTodos] = useState([]);
 
 	useEffect(() => {
-		fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-			.then((response) => response.json())
-			.then((json) => setTodos(json));
+		axios
+			.get("https://jsonplaceholder.typicode.com/todos?_limit=4")
+			.then((response) => setTodos(response.data));
 	}, []);
 
 	const handleChange = (id) => {
