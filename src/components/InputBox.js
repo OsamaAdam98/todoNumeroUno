@@ -1,14 +1,12 @@
 import React, {useState} from "react";
 function InputBox(props) {
 	const [entry, setEntry] = useState("");
-	const [id, setID] = useState(props.todos.length);
 
-	const handleSubmit = event => {
-		setID(id + 1);
-		props.newEntry(entry, id);
+	const handleSubmit = (event) => {
+		props.newEntry(entry);
 		event.preventDefault();
 	};
-	const handleChange = event => {
+	const handleChange = (event) => {
 		setEntry(event.target.value);
 	};
 

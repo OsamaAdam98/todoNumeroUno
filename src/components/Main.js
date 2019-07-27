@@ -21,10 +21,10 @@ function Main() {
 		);
 	};
 
-	const newEntry = (textEntry, itemID) => {
+	const newEntry = (textEntry) => {
 		setTodos(
 			todos.concat({
-				id: itemID,
+				id: todos.length + 1,
 				title: textEntry,
 				completed: false,
 			})
