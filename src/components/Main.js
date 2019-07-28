@@ -8,12 +8,11 @@ function Main() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		axios
-			.get("https://jsonplaceholder.typicode.com/todos?_limit=4")
-			.then((response) => {
-				setTodos(response.data);
-				setIsLoading(false);
-			});
+		setIsLoading(true);
+		axios.get("/api/todosData").then((response) => {
+			setTodos(response.data);
+			setIsLoading(false);
+		});
 	}, []);
 
 	const handleChange = (id) => {
@@ -44,7 +43,7 @@ function Main() {
 			<div className="justify-content-center d-flex">
 				<div
 					className="spinner-border"
-					style={{width: "100px", height: "100px"}}
+					style={{width: "100px", height: "100px", marginTop: "100px"}}
 					role="status"
 				>
 					<span className="sr-only">Loading..</span>
