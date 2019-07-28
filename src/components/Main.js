@@ -51,12 +51,13 @@ function Main() {
 				</div>
 			</div>
 		);
+	} else {
+		return (
+			<div className="container-fluid">
+				<InputBox newEntry={newEntry} todos={todos} />
+				{checkBoxComponent}
+			</div>
+		);
 	}
-	return (
-		<div className="container-fluid">
-			<InputBox newEntry={newEntry} todos={todos} />
-			{checkBoxComponent}
-		</div>
-	);
 }
 export default Main;
