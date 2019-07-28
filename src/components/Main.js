@@ -5,11 +5,15 @@ import axios from "axios";
 
 function Main() {
 	const [todos, setTodos] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		axios
 			.get("https://jsonplaceholder.typicode.com/todos?_limit=4")
-			.then((response) => setTodos(response.data));
+			.then((response) => {
+				setTodos(response.data);
+				setIsLoading(false);
+			});
 	}, []);
 
 	const handleChange = (id) => {
@@ -35,6 +39,19 @@ function Main() {
 		<CheckBox key={item.id} item={item} handleChange={handleChange} />
 	));
 
+	if (isLoading) {
+		return (
+			<div className="justify-content-center d-flex">
+				<div
+					className="spinner-border"
+					style={{width: "100px", height: "100px"}}
+					role="status"
+				>
+					<span className="sr-only">Loading..</span>
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div className="container-fluid">
 			<InputBox newEntry={newEntry} todos={todos} />
