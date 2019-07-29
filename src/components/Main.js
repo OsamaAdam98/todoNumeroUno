@@ -18,12 +18,11 @@ function Main() {
 			});
 	}, []);
 
-	const flush = () => {
-		setTodos([]);
-		axios
-			.post("/api/todosData", [])
-			.catch((error) => console.log(error.response));
-	};
+	useEffect(() => {
+		axios.post("/api/todosData", todos);
+	}, [todos]);
+
+	const flush = () => setTodos([]);
 
 	const handleChange = (id) => {
 		setTodos(
@@ -44,17 +43,6 @@ function Main() {
 				completed: false,
 			},
 		]);
-		axios
-			.post("/api/todosData", [
-				...todos,
-				{
-					userId: 1,
-					id: todos.length + 1,
-					title: textEntry,
-					completed: false,
-				},
-			])
-			.catch((error) => console.log(error.response));
 	};
 
 	const checkBoxComponent = todos.map((item) => (
