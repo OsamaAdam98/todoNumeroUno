@@ -9,18 +9,14 @@ app.use(express.urlencoded({extended: false}));
 
 app.get("/api/todosData", (req, res) => {
 	res.setHeader("Content-Type", "application/json");
+	console.log(todosData);
 	res.send(todosData);
 });
 
 app.post("/api/todosData", (req, res) => {
-	console.log(JSON.stringify(req.body));
-
-	fs.writeFile(
+	fs.writeFileSync(
 		__dirname + "/database/todosData.json",
-		JSON.stringify(req.body),
-		(err) => {
-			if (err) throw err;
-		}
+		JSON.stringify(req.body)
 	);
 });
 
