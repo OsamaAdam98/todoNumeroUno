@@ -14,7 +14,7 @@ function InputBox(props) {
 		<div>
 			<form onSubmit={handleSubmit}>
 				<input
-					className="form-control inputBox"
+					className="form-control inputBox mb-3"
 					type="text"
 					name="entry"
 					value={entry}

@@ -13,23 +13,15 @@ app.get("/api/todosData", (req, res) => {
 });
 
 app.post("/api/todosData", (req, res) => {
-	const makeShiftData = JSON.parse(
-		fs.readFileSync(__dirname + "/database/todosData.json", "utf8")
-	);
+	console.log(JSON.stringify(req.body));
 
-	makeShiftData.push({
-		userId: 1,
-		id: req.body.id,
-		title: req.body.title,
-		completed: false,
-	});
-
-	fs.writeFileSync(
+	fs.writeFile(
 		__dirname + "/database/todosData.json",
-		JSON.stringify(makeShiftData),
-		"utf8"
+		JSON.stringify(req.body),
+		(err) => {
+			if (err) throw err;
+		}
 	);
-	console.log("written");
 });
 
 const PORT = process.env.PORT || 3001;

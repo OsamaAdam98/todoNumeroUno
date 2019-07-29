@@ -9,11 +9,21 @@ function Main() {
 
 	useEffect(() => {
 		setIsLoading(true);
-		axios.get("/api/todosData").then((response) => {
-			setTodos(response.data);
-			setIsLoading(false);
-		});
+		axios
+			.get("/api/todosData")
+			.catch((error) => console.log(error.response))
+			.then((response) => {
+				setTodos(response.data);
+				setIsLoading(false);
+			});
 	}, []);
+
+	const flush = () => {
+		setTodos([]);
+		axios
+			.post("/api/todosData", [])
+			.catch((error) => console.log(error.response));
+	};
 
 	const handleChange = (id) => {
 		setTodos(
@@ -34,12 +44,17 @@ function Main() {
 				completed: false,
 			},
 		]);
-		axios.post("/api/todosData", {
-			userId: 1,
-			id: todos.length + 1,
-			title: textEntry,
-			completed: false,
-		});
+		axios
+			.post("/api/todosData", [
+				...todos,
+				{
+					userId: 1,
+					id: todos.length + 1,
+					title: textEntry,
+					completed: false,
+				},
+			])
+			.catch((error) => console.log(error.response));
 	};
 
 	const checkBoxComponent = todos.map((item) => (
@@ -63,6 +78,9 @@ function Main() {
 			<div className="container-fluid">
 				<InputBox newEntry={newEntry} todos={todos} />
 				{checkBoxComponent}
+				<button className="btn btn-danger container-fluid mt-3" onClick={flush}>
+					Flush
+				</button>
 			</div>
 		);
 	}
