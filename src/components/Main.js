@@ -25,13 +25,21 @@ function Main() {
 	};
 
 	const newEntry = (textEntry) => {
-		setTodos(
-			todos.concat({
+		setTodos([
+			...todos,
+			{
+				userId: 1,
 				id: todos.length + 1,
 				title: textEntry,
 				completed: false,
-			})
-		);
+			},
+		]);
+		axios.post("/api/todosData", {
+			userId: 1,
+			id: todos.length + 1,
+			title: textEntry,
+			completed: false,
+		});
 	};
 
 	const checkBoxComponent = todos.map((item) => (
