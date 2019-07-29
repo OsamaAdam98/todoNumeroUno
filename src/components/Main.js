@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import CheckBox from "./CheckBox";
 import InputBox from "./InputBox";
+import LoadingPage from "./LoadingPage";
 import axios from "axios";
 
 function Main() {
@@ -52,28 +53,15 @@ function Main() {
 		<CheckBox key={item.id} item={item} handleChange={handleChange} />
 	));
 
-	if (isLoading) {
-		return (
-			<div className="justify-content-center d-flex">
-				<div
-					className="spinner-border"
-					style={{width: "100px", height: "100px", marginTop: "100px"}}
-					role="status"
-				>
-					<span className="sr-only">Loading..</span>
-				</div>
-			</div>
-		);
-	} else {
-		return (
-			<div className="container-fluid">
-				<InputBox newEntry={newEntry} todos={todos} />
-				{checkBoxComponent}
-				<button className="btn btn-danger container-fluid mt-3" onClick={flush}>
-					Flush
-				</button>
-			</div>
-		);
-	}
+	if (isLoading) return <LoadingPage />;
+	return (
+		<div className="container-fluid">
+			<InputBox newEntry={newEntry} todos={todos} />
+			{checkBoxComponent}
+			<button className="btn btn-danger container-fluid mt-3" onClick={flush}>
+				Flush
+			</button>
+		</div>
+	);
 }
 export default Main;
