@@ -19,10 +19,13 @@ function Main() {
 	}, []);
 
 	useEffect(() => {
-		axios.post("/api/todosData", todos);
+		if (todos.length) axios.post("/api/todosData", todos);
 	}, [todos]);
 
-	const flush = () => setTodos([]);
+	const flush = () => {
+		setTodos([]);
+		axios.post("/api/todosData", []);
+	};
 
 	const handleChange = (id) => {
 		setTodos(
