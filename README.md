@@ -14,5 +14,5 @@ To run the react app and backend server concurrently
 npm run dev
 ```
 
-The backend is simply an api for saving the fetching the data.
+The backend is simply an api for saving and fetching the data.
 It saves the state of Main.js "todos" into a JSON file which isn't the optimal way to do this but anything else is probably overkill for such an application and I don't know any better yet tbh.
