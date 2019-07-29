@@ -1,15 +1,37 @@
 const express = require("express");
-const os = require("os");
-const todosData = require("./todosData.json");
+const todosData = require("./database/todosData.json");
+const fs = require("fs");
+
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 app.get("/api/todosData", (req, res) => {
 	res.setHeader("Content-Type", "application/json");
-	res.json(todosData);
+	res.send(todosData);
 });
 
-const PORT = process.env.PORT || 5000;
+app.post("/api/todosData", (req, res) => {
+	const makeShiftData = JSON.parse(
+		fs.readFileSync(__dirname + "/database/todosData.json", "utf8")
+	);
 
-app.listen(PORT, () =>
-	console.log(`Server started on ${os.hostname()}:${PORT}`)
-);
+	makeShiftData.push({
+		userId: 1,
+		id: req.body.id,
+		title: req.body.title,
+		completed: false,
+	});
+
+	fs.writeFileSync(
+		__dirname + "/database/todosData.json",
+		JSON.stringify(makeShiftData),
+		"utf8"
+	);
+	console.log("written");
+});
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
