@@ -2,7 +2,17 @@
 
 This is my shameless first attempt at react and front-end development in general.
 
-To run the front end by itself you can do
+Before installing this on your machine you'll need to first install node and react.
+
+After you've done that, you can clone the respository and install the dependencies
+
+```sh
+git clone https://github.com/OsamaAdam98/todoNumeroUno
+cd todoNumeroUno
+npm install
+```
+
+If you'd like to run the front end by itself you can do
 
 ```sh
 npm start
