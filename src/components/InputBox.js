@@ -3,7 +3,7 @@ function InputBox(props) {
 	const [entry, setEntry] = useState("");
 
 	const handleSubmit = (event) => {
-		props.newEntry(entry);
+		if (entry.trim()) props.newEntry(entry);
 		event.preventDefault();
 	};
 	const handleChange = (event) => {
