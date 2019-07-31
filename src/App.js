@@ -1,15 +1,22 @@
 import React from "react";
 import "./App.css";
 import "./bootstrap.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import NavBar from "./components/NavBar";
+import HomePage from "./components/HomePage";
+import About from "./components/About";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 function App() {
 	return (
-		<div className="App container-full">
-			<Header />
-			<Main />
-		</div>
+		<Router>
+			<div className="App container-full">
+				<NavBar />
+				<Switch>
+					<Route exact path="/" component={HomePage} />
+					<Route path="/about/" component={About} />
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 

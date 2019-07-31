@@ -10,3 +10,8 @@
 .chBoxList {
 	cursor: pointer;
 }
+
+.divFlex {
+	display: flex;
+	flex-direction: row;
+}

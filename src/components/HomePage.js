@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import CheckBox from "./CheckBox";
-import InputBox from "./InputBox";
+import InputForm from "./InputForm";
 import LoadingPage from "./LoadingPage";
 import axios from "axios";
 
-function Main() {
+function HomePage() {
 	const [todos, setTodos] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -55,12 +55,9 @@ function Main() {
 	if (isLoading) return <LoadingPage />;
 	return (
 		<div className="container-fluid">
-			<InputBox newEntry={newEntry} todos={todos} />
+			<InputForm newEntry={newEntry} todos={todos} flush={flush} />
 			{checkBoxComponent}
-			<button className="btn btn-danger container-fluid mt-3" onClick={flush}>
-				Flush
-			</button>
 		</div>
 	);
 }
-export default Main;
+export default HomePage;
