@@ -2,7 +2,7 @@
 
 This is my shameless first attempt at react and front-end development in general.
 
-Before installing this on your machine you'll need to first install node and react.
+Before installing this on your machine you'll need to first install node.
 
 After you've done that, you can clone the respository and install the dependencies
 
