@@ -2,8 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 function NavBar() {
-	const currentPath = window.location.href;
-	const hostPath = window.location.origin;
 	return (
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
