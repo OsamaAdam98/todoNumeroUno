@@ -7,16 +7,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.get("/api/todosData", (req, res) => {
+app.get("/api/todosData", (req, res, err) => {
 	res.setHeader("Content-Type", "application/json");
-	console.log(todosData);
 	res.send(todosData);
 });
 
-app.post("/api/todosData", (req, res) => {
+app.post("/api/todosData", (req, res, err) => {
 	fs.writeFileSync(
 		__dirname + "/database/todosData.json",
-		JSON.stringify(req.body)
+		JSON.stringify(req.body),
+		(error) => {
+			res.end();
+		}
 	);
 });
 

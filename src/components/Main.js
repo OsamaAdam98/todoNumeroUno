@@ -12,20 +12,19 @@ function Main() {
 		setIsLoading(true);
 		axios
 			.get("/api/todosData")
-			.catch((error) => console.log(error.response))
-			.then((response) => {
-				setTodos(response.data);
-				setIsLoading(false);
-			});
+			.catch((error) => console.log(error))
+			.then((response) => setTodos(response.data))
+			.then(() => setIsLoading(false));
 	}, []);
 
 	useEffect(() => {
-		if (todos.length) axios.post("/api/todosData", todos);
+		if (todos.length)
+			axios.post("/api/todosData", todos).catch((error) => console.log(error));
 	}, [todos]);
 
-	const flush = () => {
-		setTodos([]);
-		axios.post("/api/todosData", []);
+	const flush = async () => {
+		await setTodos([]);
+		axios.post("/api/todosData", []).catch((error) => console.log(error));
 	};
 
 	const handleChange = (id) => {
