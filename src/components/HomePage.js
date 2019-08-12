@@ -43,8 +43,8 @@ function HomePage() {
 				userId: 1,
 				id: todos.length + 1,
 				title: textEntry,
-				completed: false,
-			},
+				completed: false
+			}
 		]);
 	};
 
