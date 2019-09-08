@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import CheckBox from "./CheckBox";
 import InputForm from "./InputForm";
 import LoadingPage from "./LoadingPage";
-import axios from "axios";
 
 function HomePage() {
 	const [todos, setTodos] = useState([]);
@@ -10,21 +9,36 @@ function HomePage() {
 
 	useEffect(() => {
 		setIsLoading(true);
-		axios
-			.get("/api/todosData")
-			.catch((error) => console.log(error))
-			.then((response) => setTodos(response.data))
-			.then(() => setIsLoading(false));
+		fetch("/api/todosData")
+			.then((res) => res.json())
+			.then((resData) => {
+				setTodos(resData);
+				setIsLoading(false);
+			});
 	}, []);
 
 	useEffect(() => {
 		if (todos.length)
-			axios.post("/api/todosData", todos).catch((error) => console.log(error));
+			fetch("/api/todosData", {
+				method: "POST",
+				body: JSON.stringify(todos),
+				headers: {
+					Accept: "application/json, text/plain, */*",
+					"Content-Type": "application/json"
+				}
+			});
 	}, [todos]);
 
 	const flush = async () => {
-		await setTodos([]);
-		axios.post("/api/todosData", []).catch((error) => console.log(error));
+		setTodos([]);
+		fetch("/api/todosData", {
+			method: "POST",
+			body: JSON.stringify([]),
+			headers: {
+				Accept: "application/json, text/plain, */*",
+				"Content-Type": "application/json"
+			}
+		});
 	};
 
 	const handleChange = (id) => {
