@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 
 function NavBar() {
 	return (
-		<div>
+		<>
 			<Navbar
 				collapseOnSelect
 				expand="lg"
@@ -21,20 +21,16 @@ function NavBar() {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="mr-auto">
-						<Nav.Link>
-							<Link to="/" className="nav-link">
-								Home
-							</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to="/about/" className="nav-link">
-								About
-							</Link>
-						</Nav.Link>
+						<Link to="/" className="nav-link">
+							Home
+						</Link>
+						<Link to="/about/" className="nav-link">
+							About
+						</Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
-		</div>
+		</>
 	);
 }
 
