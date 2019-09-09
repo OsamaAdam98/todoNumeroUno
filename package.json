@@ -1,8 +1,8 @@
 {
-	"name": "todo1",
-	"version": "0.1.0",
+	"name": "todo-numero-uno",
+	"version": "1.0.0",
 	"private": true,
-	"proxy": "http://localhost:3001",
+	"proxy": "http://localhost:4040",
 	"dependencies": {
 		"bootstrap": "^4.3.1",
 		"create-react-app": "^3.0.1",
