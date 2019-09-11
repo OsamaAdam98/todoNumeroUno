@@ -5,11 +5,11 @@
 	"proxy": "http://localhost:4040",
 	"dependencies": {
 		"bootstrap": "^4.3.1",
-		"create-react-app": "^3.0.1",
+		"create-react-app": "^3.1.1",
 		"express": "^4.17.1",
-		"react": "^16.8.6",
-		"react-bootstrap": "^1.0.0-beta.10",
-		"react-dom": "^16.8.6",
+		"react": "^16.9.0",
+		"react-bootstrap": "^1.0.0-beta.12",
+		"react-dom": "^16.9.0",
 		"react-router-dom": "^5.0.1",
 		"react-scripts": "3.0.1"
 	},
@@ -42,7 +42,7 @@
 	},
 	"devDependencies": {
 		"node-env-run": "^3.0.2",
-		"nodemon": "^1.19.1",
+		"nodemon": "^1.19.2",
 		"npm-run-all": "^4.1.5"
 	}
 }
