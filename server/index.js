@@ -18,7 +18,7 @@ app.post("/api/todosData", (req, res) => {
 		__dirname + "/database/todosData.json"
 	);
 	req.pipe(todosDataWrite);
-	res.sendStatus(200);
+	res.status(200).send("Processing the post request");
 });
 
 const port = process.env.PORT || 4040;

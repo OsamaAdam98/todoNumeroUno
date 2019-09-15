@@ -11,16 +11,16 @@
 		"react-bootstrap": "^1.0.0-beta.12",
 		"react-dom": "^16.9.0",
 		"react-router-dom": "^5.0.1",
-		"react-scripts": "3.0.1"
+		"react-scripts": "3.0.1",
+		"typescript": "^3.6.3"
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"server": "node-env-run server --exec nodemon",
-		"dev": "run-p server start",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client        && npm run build --prefix client"
+		"server": "node-env-run server --exec node",
+		"dev": "run-p server start"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
