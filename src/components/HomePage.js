@@ -41,6 +41,14 @@ function HomePage() {
 		});
 	};
 
+	const handleRemove = (id) => {
+		setTodos(
+			todos.filter((todo) => {
+				if (todo.id !== id) return true;
+			})
+		);
+	};
+
 	const handleChange = (id) => {
 		setTodos(
 			todos.map((todo) => {
@@ -63,7 +71,12 @@ function HomePage() {
 	};
 
 	const checkBoxComponent = todos.map((item) => (
-		<CheckBox key={item.id} item={item} handleChange={handleChange} />
+		<CheckBox
+			key={item.id}
+			item={item}
+			handleChange={handleChange}
+			handleRemove={handleRemove}
+		/>
 	));
 
 	if (isLoading) return <LoadingPage />;

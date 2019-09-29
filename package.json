@@ -5,7 +5,7 @@
 	"proxy": "http://localhost:4040",
 	"dependencies": {
 		"bootstrap": "^4.3.1",
-		"create-react-app": "^3.1.1",
+		"create-react-app": "^3.1.2",
 		"express": "^4.17.1",
 		"react": "^16.9.0",
 		"react-bootstrap": "^1.0.0-beta.12",

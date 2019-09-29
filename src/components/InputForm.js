@@ -26,7 +26,7 @@ function InputForm(props) {
 					/>
 					<button
 						type="button"
-						className="input-group-append btn btn-danger"
+						className="btn btn-danger"
 						onClick={props.flush}
 					>
 						Flush
