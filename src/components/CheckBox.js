@@ -8,26 +8,35 @@ function CheckBox(props) {
 	return (
 		<div>
 			<ul className="list-group">
-				<li
-					className="list-group-item list-group-item-action chBoxList"
-					onClick={() => props.handleChange(props.item.id)}
-				>
-					<label
-						htmlFor={props.item.id}
-						style={entryStyle}
-						className="chBoxLabel"
+				<div className="list-group list-group-horizontal">
+					<li
+						className="list-group-item list-group-item-action chBoxList"
+						onClick={() => props.handleChange(props.item.id)}
 					>
-						<input
-							className="chBox"
-							type="checkbox"
-							id={props.item.id}
-							checked={props.item.completed}
-							onChange={() => props.handleChange(props.item.id)}
-						/>
+						<label
+							htmlFor={props.item.id}
+							style={entryStyle}
+							className="chBoxLabel"
+						>
+							<input
+								className="chBox"
+								type="checkbox"
+								id={props.item.id}
+								checked={props.item.completed}
+								onChange={() => props.handleChange(props.item.id)}
+							/>
 
-						{props.item.title}
-					</label>
-				</li>
+							{props.item.title}
+						</label>
+					</li>
+					<button
+						type="button"
+						className="btn btn-danger"
+						onClick={() => props.handleRemove(props.item.id)}
+					>
+						Remove
+					</button>
+				</div>
 			</ul>
 		</div>
 	);
