@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
 import CheckBox from "./CheckBox";
 import InputForm from "./InputForm";
 import LoadingPage from "./LoadingPage";
+
+const url = `http://192.168.1.5:5000` || `http://localhost:5000`;
 
 function HomePage() {
 	const [todos, setTodos] = useState([]);
@@ -9,61 +12,49 @@ function HomePage() {
 
 	useEffect(() => {
 		setIsLoading(true);
-		fetch("/api/todosData")
-			.then((res) => res.json())
-			.then((resData) => {
-				setTodos(resData);
+		axios
+			.get(`${url}/todos/`)
+			.then((res) => {
+				setTodos(res.data);
 				setIsLoading(false);
-			});
+			})
+			.catch((err) => console.log(`Error: ${err}`));
 	}, []);
 
-	useEffect(() => {
-		if (todos.length)
-			fetch("/api/todosData", {
-				method: "POST",
-				body: JSON.stringify(todos),
-				headers: {
-					Accept: "application/json, text/plain, */*",
-					"Content-Type": "application/json"
-				}
-			});
-	}, [todos]);
-
-	const flush = async () => {
-		setTodos([]);
-		fetch("/api/todosData", {
-			method: "POST",
-			body: JSON.stringify([]),
-			headers: {
-				Accept: "application/json, text/plain, */*",
-				"Content-Type": "application/json"
-			}
-		});
-	};
-
 	const handleRemove = (id) => {
-		setTodos(
-			todos.filter((todo) => {
-				if (todo.id !== id) return true;
-			})
-		);
+		axios
+			.delete(`${url}/todos/${id}`)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(`Error: ${err}`));
+		setTodos(todos.filter((todo) => todo._id !== id));
 	};
 
 	const handleChange = (id) => {
 		setTodos(
 			todos.map((todo) => {
-				if (todo.id === id) todo.completed = !todo.completed;
+				if (todo._id === id) todo.completed = !todo.completed;
 				return todo;
 			})
 		);
+		const editEntry = todos.filter((todo) => todo._id === id);
+		axios
+			.post(`${url}/todos/update/${id}`, editEntry[0])
+			.then((res) => console.log(res.data));
 	};
 
 	const newEntry = (textEntry) => {
+		const entry = {
+			title: textEntry,
+			completed: false
+		};
+
+		axios
+			.post(`${url}/todos/add/`, entry)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(`Error: ${err}`));
 		setTodos([
 			...todos,
 			{
-				userId: 1,
-				id: todos.length + 1,
 				title: textEntry,
 				completed: false
 			}
@@ -72,7 +63,7 @@ function HomePage() {
 
 	const checkBoxComponent = todos.map((item) => (
 		<CheckBox
-			key={item.id}
+			key={item._id}
 			item={item}
 			handleChange={handleChange}
 			handleRemove={handleRemove}
@@ -82,7 +73,7 @@ function HomePage() {
 	if (isLoading) return <LoadingPage />;
 	return (
 		<div className="container-fluid">
-			<InputForm newEntry={newEntry} todos={todos} flush={flush} />
+			<InputForm newEntry={newEntry} todos={todos} />
 			{checkBoxComponent}
 		</div>
 	);

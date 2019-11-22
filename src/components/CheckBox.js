@@ -11,19 +11,19 @@ function CheckBox(props) {
 				<div className="list-group list-group-horizontal">
 					<li
 						className="list-group-item list-group-item-action chBoxList"
-						onClick={() => props.handleChange(props.item.id)}
+						onClick={() => props.handleChange(props.item._id)}
 					>
 						<label
-							htmlFor={props.item.id}
+							htmlFor={props.item._id}
 							style={entryStyle}
 							className="chBoxLabel"
 						>
 							<input
 								className="chBox"
 								type="checkbox"
-								id={props.item.id}
+								id={props.item._id}
 								checked={props.item.completed}
-								onChange={() => props.handleChange(props.item.id)}
+								onChange={() => props.handleChange(props.item._id)}
 							/>
 
 							{props.item.title}
@@ -32,7 +32,7 @@ function CheckBox(props) {
 					<button
 						type="button"
 						className="btn btn-danger"
-						onClick={() => props.handleRemove(props.item.id)}
+						onClick={() => props.handleRemove(props.item._id)}
 					>
 						Remove
 					</button>
