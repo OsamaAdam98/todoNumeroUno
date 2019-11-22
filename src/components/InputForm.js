@@ -24,13 +24,6 @@ function InputForm(props) {
 						autoFocus={true}
 						autoComplete="false"
 					/>
-					<button
-						type="button"
-						className="btn btn-danger"
-						onClick={props.flush}
-					>
-						Flush
-					</button>
 				</div>
 			</form>
 		</div>
