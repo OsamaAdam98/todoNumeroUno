@@ -52,18 +52,12 @@ function HomePage() {
 			.post(`${url}/todos/add/`, entry)
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(`Error: ${err}`));
-		setTodos([
-			...todos,
-			{
-				title: textEntry,
-				completed: false
-			}
-		]);
+		setTodos([...todos, entry]);
 	};
 
-	const checkBoxComponent = todos.map((item) => (
+	const checkBoxComponent = todos.map((item, index) => (
 		<CheckBox
-			key={item._id}
+			key={index}
 			item={item}
 			handleChange={handleChange}
 			handleRemove={handleRemove}
