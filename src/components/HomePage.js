@@ -4,7 +4,7 @@ import CheckBox from "./CheckBox";
 import InputForm from "./InputForm";
 import LoadingPage from "./LoadingPage";
 
-const url = `http://192.168.1.5:5000` || `http://localhost:5000`;
+const url = `${window.URL}:5000`;
 
 function HomePage() {
 	const [todos, setTodos] = useState([]);
