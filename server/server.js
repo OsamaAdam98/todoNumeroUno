@@ -15,19 +15,19 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;
 
 connection.once("open", () =>
-	console.log("Database connection established successfully..")
+  console.log("Database connection established successfully..")
 );
 
 app.use("/todos", todosRoute);
 
 app.listen(port, () => {
-	console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
