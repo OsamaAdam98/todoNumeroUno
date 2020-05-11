@@ -17,14 +17,12 @@ const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 
 const connection = mongoose.connection;
 
-connection.once("open", () =>
-  console.log("Database connection established successfully..")
-);
+connection.once("open", () => console.log("Database connection established successfully.."));
 
 app.use("/todos", todosRoute);
 

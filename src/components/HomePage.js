@@ -4,8 +4,6 @@ import CheckBox from "./CheckBox";
 import InputForm from "./InputForm";
 import LoadingPage from "./LoadingPage";
 
-const url = `${window.URL}:5000`;
-
 function HomePage() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +11,7 @@ function HomePage() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${url}/todos/`)
+      .get(`/todos/`)
       .then((res) => {
         setTodos(res.data);
         setIsLoading(false);
@@ -23,7 +21,7 @@ function HomePage() {
 
   const handleRemove = (id) => {
     axios
-      .delete(`${url}/todos/${id}`)
+      .delete(`/todos/${id}`)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(`Error: ${err}`));
     setTodos(todos.filter((todo) => todo._id !== id));
@@ -37,31 +35,24 @@ function HomePage() {
       })
     );
     const editEntry = todos.filter((todo) => todo._id === id);
-    axios
-      .post(`${url}/todos/update/${id}`, editEntry[0])
-      .then((res) => console.log(res.data));
+    axios.post(`/todos/update/${id}`, editEntry[0]).then((res) => console.log(res.data));
   };
 
   const newEntry = (textEntry) => {
     const entry = {
       title: textEntry,
-      completed: false,
+      completed: false
     };
 
     axios
-      .post(`${url}/todos/add/`, entry)
+      .post(`/todos/add/`, entry)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(`Error: ${err}`));
     setTodos([...todos, entry]);
   };
 
   const checkBoxComponent = todos.map((item, index) => (
-    <CheckBox
-      key={index}
-      item={item}
-      handleChange={handleChange}
-      handleRemove={handleRemove}
-    />
+    <CheckBox key={index} item={item} handleChange={handleChange} handleRemove={handleRemove} />
   ));
 
   if (isLoading) return <LoadingPage />;

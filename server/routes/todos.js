@@ -13,7 +13,7 @@ router.post("/add", (req, res) => {
 
   const newTodo = new Todos({
     title,
-    completed,
+    completed
   });
 
   newTodo
